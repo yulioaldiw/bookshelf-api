@@ -69,4 +69,45 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addBookHandler };
+// const getAllBooksHandler = () => ({
+//   status: 'success',
+//   data: {
+//     books: {
+//       id,
+//       name,
+//       publisher,
+//     },
+//   },
+// });
+
+const getAllBooksHandler = (request, h) => {
+  // const { name, reading, finished } = request.query;
+  // const { name } = request.query;
+
+  // let filteredBooks = books;
+  const filteredBooks = books;
+
+  // if (name !== undefined) {
+  //   filteredBooks = filteredBooks.filter((book) => book
+  //     .name.toLowerCase().includes(name.toLowerCase()));
+  // }
+
+  // if (reading !== undefined) {
+  //   filteredBooks = filteredBooks.filter((book) => book.reading ===)
+  // }
+
+  const response = h.response({
+    status: 'success',
+    data: {
+      books: filteredBooks.map((book) => ({
+        id: book.id,
+        name: book.name,
+        publisher: book.publisher,
+      })),
+    },
+  });
+  response.code(200);
+  return response;
+};
+
+module.exports = { addBookHandler, getAllBooksHandler };
